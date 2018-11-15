@@ -1,3 +1,5 @@
+'use strict';
+
 let money = prompt('Ваш бюджет на месяц?'),
     time = prompt('Введите дату в формате YYYY-MM-DD'),
     answer = prompt('Введите обязательную статью расходов в этом месяце'),
@@ -7,10 +9,12 @@ console.log(money, time);
 let appData = {
     budget: money,
     timeData: time,
-};
+    expenses:{ answer, answer1
+    },
+    optionalExpenses: '',
+    income: '',
+    savings: false,
+  };
 console.log(appData);
-
-let expenses = {
-  answer, answer1,
-};
-console.log(expenses );
+alert (money/30 + ' ваш бюджет на день');
+console.log(money/30);
