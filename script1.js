@@ -30,8 +30,6 @@ while (x < 2) {
    if (typeof(a) === 'string' && (typeof(a)) != null && (typeof(b)) != null && a != '' && b != '' && a.length < 50) {
       appData.expenses[a] = b;
       x++;
-    } else {
-      x--;
     }
 }*/
 /*let x = 0;
@@ -41,8 +39,6 @@ do {
       if (typeof(a) === 'string' && (typeof(a)) != null && (typeof(b)) != null && a != '' && b != '' && a.length < 50) {
         appData.expenses[a] = b;
         x++;
-      }  else {
-        x--;
       }
 } while (x < 2);*/
 appData.moneyPerDay = appData.budget / 30;
