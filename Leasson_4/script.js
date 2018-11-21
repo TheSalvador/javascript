@@ -66,20 +66,35 @@ let appData = {
       }
     },
     chooseIncome: function() {
-        for (let i = 1; i < 2; i++) {
-          let items = prompt('Какие действия принесут дополнительный доход?');
+        // for (let i = 1; i < 2; i++) {
+        //   let items = prompt('Какие действия принесут дополнительный доход?');
 
-        if (typeof(items) === 'string' && (typeof(items)) != null && items != '' && items.length < 50){
-          appData.income = items.split(', ');
-          appData.income.push(prompt('Подумай хорошенько)))'));
-          appData.income.sort();
-          appData.income.forEach(function(item, i) {
+        // if (typeof(items) === 'string' && (typeof(items)) != null && items != '' && items.length < 50){
+        //   appData.income = items.split(', ');
+        //   appData.income.push(prompt('Подумай хорошенько)))'));
+        //   appData.income.sort();
+        //   appData.income.forEach(function(item, i) {
           
-          let b = i+1;
-          console.log(b + ' - Способ доп. заработка: ' + item);
-        });
-        } else {i--;}
-        alert('Способ доп. заработка: ' + appData.income);
+        //   let b = i+1;
+        //   console.log(b + ' - Способ доп. заработка: ' + item);
+        // });
+        // } else {i--;}
+        // alert('Способ доп. заработка: ' + appData.income);
+        // }
+        let i = 1;
+        while (i < 2) {
+          let items = prompt('Какие действия принесут дополнительный доход?');
+          if (typeof(items) === 'string' && (typeof(items)) != null && items != '' && items.length < 50){
+            appData.income = items.split(', ');
+            appData.income.push(prompt('Подумай хорошенько)))'));
+            appData.income.sort();
+            appData.income.forEach(function(item, i) {
+                // let b = i+1;
+                console.log(i+1 + ' - Способ доп. заработка: ' + item);
+              });
+              i++;
+          }
+          alert('Способ доп. заработка: ' + appData.income);
         }
         
     }
