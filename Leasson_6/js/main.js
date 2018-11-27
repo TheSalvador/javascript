@@ -78,6 +78,18 @@ optexpensesbtn.addEventListener('click', function(){
   }
 });
 
+budgetbtn.disabled = true;
+
+inputs.forEach(function (item) {
+  item.addEventListener('change', function () {
+      if (item.value == '') {
+        budgetbtn.disabled = true;
+      } else {
+        budgetbtn.disabled = false;
+      }
+  });
+});
+
 budgetbtn.addEventListener('click', function(){
   let expenses = appData.expensesSum;
   if (appData.budget != undefined) {
