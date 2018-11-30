@@ -70,31 +70,20 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 	setClock('timer', deadLine);
 // modal
-	let btn = document.querySelector('.more'),
-			descrBtn = document.querySelector('.description-btn'),
-			overlay = document.querySelector('.overlay'),
-			close = document.querySelector('.popup-close');
+	let	infos = document.querySelector('body'),
+			overlay = document.querySelector('.overlay');
 
-	descrBtn.addEventListener('click', function() {	
-		overlay.style.display = 'block';
-		descrBtn.classList.add('more-splash');
-		document.body.style.overflow = 'hidden';
-	});
-	// descrBtn.forEach(function(item) {
-	// 	item.addEventListener('click', function(){
-	// 		let btns = item.getAttribute('more');
-	// 		console.log(btns);
-	// 	});
-	// });
-
-	btn.addEventListener('click', function() {
-		overlay.style.display = 'block';
-		this.classList.add('more-splash');
-		document.body.style.overflow = 'hidden';
-	});
-	close.addEventListener('click', function(){
-		overlay.style.display = 'none';
-		btn.classList.remove('more-splash');
-		document.body.style.overflow = '';
+	infos.addEventListener('click', function(event) {
+		let target = event.target;
+		if (target && target.classList.contains('more') || target.classList.contains('description-btn')){
+			overlay.style.display = 'block';
+			this.classList.add('more-splash');
+			document.body.style.overflow = 'hidden';
+		}
+		if (target && target.classList.contains('popup-close')){
+			overlay.style.display = 'none';
+			this.classList.remove('more-splash');
+			document.body.style.overflow = '';
+		}
 	});
 });
