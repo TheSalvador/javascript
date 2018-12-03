@@ -71,18 +71,19 @@ window.addEventListener('DOMContentLoaded', () => {
 	setClock('timer', deadLine);
 // modal
 	let	infos = document.querySelector('body'),
+		btn = document.querySelector('.more'),
 		overlay = document.querySelector('.overlay');
 
-	infos.addEventListener('click', function(event) {
+	infos.addEventListener('click', (event) => {
 		let target = event.target;
 		if (target && target.classList.contains('more') || target.classList.contains('description-btn')){
 			overlay.style.display = 'block';
-			this.classList.add('more-splash');
+			btn.classList.add('more-splash');
 			document.body.style.overflow = 'hidden';
 		}
 		if (target && target.classList.contains('popup-close')){
 			overlay.style.display = 'none';
-			this.classList.remove('more-splash');
+			btn.classList.remove('more-splash');
 			document.body.style.overflow = '';
 		}
 	});
