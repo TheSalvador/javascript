@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	};
 
-	info.addEventListener('click', (event)=> {
+	info.addEventListener('click', (event) => {
 		let target = event.target;
 		if (target && target.classList.contains('info-header-tab')) {
 			for(let i = 0; i < tab.length; i++) {
@@ -71,9 +71,9 @@ window.addEventListener('DOMContentLoaded', () => {
 	setClock('timer', deadLine);
 // modal
 	let	infos = document.querySelector('body'),
-			overlay = document.querySelector('.overlay');
+		overlay = document.querySelector('.overlay');
 
-	infos.addEventListener('click', (event) => {
+	infos.addEventListener('click', function(event) {
 		let target = event.target;
 		if (target && target.classList.contains('more') || target.classList.contains('description-btn')){
 			overlay.style.display = 'block';
