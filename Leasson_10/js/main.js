@@ -1,26 +1,26 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', () => {
 	'use strict';
 	let tab = document.querySelectorAll('.info-header-tab'),
-		info = document.querySelector('.info-header'),
-		tabContent = document.querySelectorAll('.info-tabcontent');
+			info = document.querySelector('.info-header'),
+			tabContent = document.querySelectorAll('.info-tabcontent');
 
-	function hideTabContent(a) {
+	let hideTabContent = (a)=> {
 		for (let i = a; i < tabContent.length; i++) {
 			tabContent[i].classList.remove('show');
 			tabContent[i].classList.add('hide');
 		}
-	}
+	};
 
 	hideTabContent(1);
 
-	function showTabContent(b) {
+	let showTabContent = (b)=> {
 		if (tabContent[b].classList.contains('hide')) {
 			tabContent[b].classList.remove('hide');
 			tabContent[b].classList.add('show');
 		}
-	}
+	};
 
-	info.addEventListener('click', function(event) {
+	info.addEventListener('click', (event)=> {
 		let target = event.target;
 		if (target && target.classList.contains('info-header-tab')) {
 			for(let i = 0; i < tab.length; i++) {
@@ -33,8 +33,8 @@ window.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 //Timer
-	let deadLine = "2018.11.28";
-	function getTimeRemaining(endtime) {
+	let deadLine = "2018.12.28";
+	let getTimeRemaining = (endtime) => {
 		let t = Date.parse(endtime) - Date.parse(new Date()),
 			second = Math.floor((t/1000) % 60),
 			minutes = Math.floor((t/1000/60) % 60),
@@ -46,13 +46,13 @@ window.addEventListener('DOMContentLoaded', function() {
 				'minutes' : minutes,
 				'seconds' : second
 			};
-	}
-	function setClock(id, endtime) {
+	};
+	let setClock = (id, endtime) => {
 		let timer = document.getElementById(id),
-			hour = timer.querySelector('.hours'),
-			minutes = timer.querySelector('.minutes'),
-			second = timer.querySelector('.seconds'),
-			timeInterval = setInterval(updateClock, 1000);
+				hour = timer.querySelector('.hours'),
+				minutes = timer.querySelector('.minutes'),
+				second = timer.querySelector('.seconds'),
+				timeInterval = setInterval(updateClock, 1000);
 
 		function updateClock() {
 			let t = getTimeRemaining(endtime);
@@ -67,13 +67,13 @@ window.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 		updateClock();
-	}
+	};
 	setClock('timer', deadLine);
 // modal
 	let	infos = document.querySelector('body'),
 			overlay = document.querySelector('.overlay');
 
-	infos.addEventListener('click', function(event) {
+	infos.addEventListener('click', (event) => {
 		let target = event.target;
 		if (target && target.classList.contains('more') || target.classList.contains('description-btn')){
 			overlay.style.display = 'block';
