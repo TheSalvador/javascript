@@ -121,7 +121,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		let json = JSON.stringify(obj);
 		request.send(json);
 		// request.send(formData);
-		let re = 
 
 		request.addEventListener('readystatechange', function(){
 			if (request.readyState < 4) {
