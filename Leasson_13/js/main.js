@@ -152,8 +152,8 @@ window.addEventListener('DOMContentLoaded', () => {
 		next = document.querySelector('.next'),
 		dots = document.querySelector('.slider-dots'),
 		dot = document.querySelectorAll('.dot');
-	showSlides(slideIndex);
-	function showSlides(n) {
+	
+	let showSlides = (n)=> {
 		if (n > slides.length) {
 			slideIndex = 1;
 		}
@@ -168,7 +168,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		slides[slideIndex - 1].style.display = 'block';
 		dot[slideIndex - 1].classList.add('dot-active');
-	}
+	};
+	showSlides(slideIndex);
 	function pluseSlides(n) {
 		showSlides(slideIndex += n);
 	}
@@ -199,24 +200,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		totalValue.innerHTML = 0;
 
-		persons.addEventListener('input', function(){
+		persons.addEventListener('input', ()=>{
 			persons.value = persons.value.replace(/[^0-9]/ig, '');
 		});
 		persons.addEventListener('change', function() {
 			personsSum = +this.value;
-			total = (daysSum + personsSum)*3000;
+			total = (daysSum * personsSum)*3000;
 			if(restDays.value == '') {
 				totalValue.innerHTML = 0;
 			} else {
 				totalValue.innerHTML = total;
 			}
 		});
-		restDays.addEventListener('input', function(){
+		restDays.addEventListener('input', ()=>{
 			restDays.value = restDays.value.replace(/[^0-9]/ig, '');
 		});
 		restDays.addEventListener('change', function() {
 			daysSum = +this.value;
-			total = (daysSum + personsSum)*3000;
+			total = (daysSum * personsSum)*3000;
 			if(restDays.value == '' || persons.value == '') {
 				totalValue.innerHTML = 0;
 			} else {
