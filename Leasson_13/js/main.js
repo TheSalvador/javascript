@@ -203,7 +203,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		persons.addEventListener('input', ()=>{
 			persons.value = persons.value.replace(/[^0-9]/ig, '');
 		});
-		persons.addEventListener('change', function() {
+		persons.addEventListener('input', function() {
 			personsSum = +this.value;
 			total = (daysSum * personsSum)*3000;
 			if(restDays.value == '') {
@@ -215,7 +215,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		restDays.addEventListener('input', ()=>{
 			restDays.value = restDays.value.replace(/[^0-9]/ig, '');
 		});
-		restDays.addEventListener('change', function() {
+		restDays.addEventListener('input', function() {
 			daysSum = +this.value;
 			total = (daysSum * personsSum)*3000;
 			if(restDays.value == '' || persons.value == '') {
