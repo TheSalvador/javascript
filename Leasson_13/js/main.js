@@ -200,37 +200,62 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		totalValue.innerHTML = 0;
 
+		// function repl(e) {
+		// 	e.value = e.value.replace(/[^0-9]/ig, '');
+		// }
+
+		// persons.onclick = repl;
+		// restDays.onclick = repl;
 		persons.addEventListener('input', ()=>{
 			persons.value = persons.value.replace(/[^0-9]/ig, '');
 		});
-		persons.addEventListener('input', function() {
-			personsSum = +this.value;
+		// persons.addEventListener('input', function() {
+		// 	personsSum = +this.value;
+		// 	total = (daysSum * personsSum)*3000;
+		// 	if(restDays.value == '') {
+		// 		totalValue.innerHTML = 0;
+		// 	} else {
+		// 		totalValue.innerHTML = total;
+		// 	}
+		// });
+		restDays.addEventListener('input', ()=>{
+			restDays.value = restDays.value.replace(/[^0-9]/ig, '');
+		});
+		// restDays.addEventListener('input', function() {
+		// 	daysSum = +this.value;
+		// 	total = (daysSum * personsSum)*3000;
+		// 	if(restDays.value == '' || persons.value == '') {
+		// 		totalValue.innerHTML = 0;
+		// 	} else {
+		// 		totalValue.innerHTML = total;
+		// 	}
+		// });
+
+		// plase.addEventListener('change', function(){
+		// 	if(restDays.value == '' || persons.value == '') {
+		// 		totalValue.innerHTML = 0;
+		// 	} else {
+		// 		let a = total;
+		// 		totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+		// 	}
+		// });
+		let calc=() =>{
+			daysSum = +restDays.value;
+			personsSum = +persons.value;
 			total = (daysSum * personsSum)*3000;
 			if(restDays.value == '') {
 				totalValue.innerHTML = 0;
 			} else {
 				totalValue.innerHTML = total;
 			}
-		});
-		restDays.addEventListener('input', ()=>{
-			restDays.value = restDays.value.replace(/[^0-9]/ig, '');
-		});
-		restDays.addEventListener('input', function() {
-			daysSum = +this.value;
-			total = (daysSum * personsSum)*3000;
 			if(restDays.value == '' || persons.value == '') {
 				totalValue.innerHTML = 0;
 			} else {
-				totalValue.innerHTML = total;
+				totalValue.innerHTML = total * plase.options[plase.selectedIndex].value;
 			}
-		});
-
-		plase.addEventListener('change', function(){
-			if(restDays.value == '' || persons.value == '') {
-				totalValue.innerHTML = 0;
-			} else {
-				let a = total;
-				totalValue.innerHTML = a * this.options[this.selectedIndex].value;
-			}
-		});
+		};
+		persons.addEventListener('input', calc);
+		restDays.addEventListener('input', calc);
+		plase.addEventListener('change', calc);
+		
 });
