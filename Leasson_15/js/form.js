@@ -1,4 +1,24 @@
 function form() {
+	//modal
+	let	infos = document.querySelector('body'),
+		btn = document.querySelector('.more'),
+		overlay = document.querySelector('.overlay');
+
+	infos.addEventListener('click', (event) => {
+		let target = event.target;
+		if (target && target.classList.contains('more') || target.classList.contains('description-btn')){
+			overlay.style.display = 'block';
+			btn.classList.add('more-splash');
+			document.body.style.overflow = 'hidden';
+		}
+		if (target && target.classList.contains('popup-close')){
+			overlay.style.display = 'none';
+			btn.classList.remove('more-splash');
+			document.body.style.overflow = '';
+			statusMessage.innerHTML = '';
+		}
+	});
+	//form
 	let message = {
 		loading: 'Загрузка...',
 		success: 'Спасибо! Cкоро мы с вами свяжемся',
@@ -59,6 +79,11 @@ function form() {
 			.then(clearInput);
 		});
 	}
+	function clearInp() {
+		statusMessage.innerHTML = '';
+	}
+	input.oninput = clearInp;
+	inputs.oninput = clearInp;
 	allForm(form);
 	allForm(contantForm);
 }
