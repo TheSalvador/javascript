@@ -2,7 +2,9 @@ function form() {
 	//modal
 	let	infos = document.querySelector('body'),
 		btn = document.querySelector('.more'),
+		inputModal = document.querySelector('.popup-form__input'),
 		overlay = document.querySelector('.overlay');
+		console.log(inputModal);
 
 	infos.addEventListener('click', (event) => {
 		let target = event.target;
@@ -16,6 +18,7 @@ function form() {
 			btn.classList.remove('more-splash');
 			document.body.style.overflow = '';
 			statusMessage.innerHTML = '';
+			inputModal.value='';
 		}
 	});
 	//form
@@ -31,7 +34,6 @@ function form() {
 		inputs = contantForm.getElementsByTagName('input')[1],
 		inputOne = contantForm.getElementsByTagName('input')[0],
 		statusMessage = document.createElement('div');
-		console.log(inputOne);
 
 		statusMessage.classList.add('status');
 		input.addEventListener('input', function(){
@@ -52,7 +54,7 @@ function form() {
 			});
 			let json = JSON.stringify(obj);
 
-			function postData(data) {
+			function postData() {
 				return new Promise(function(resolve, reject) {
 					let request = new XMLHttpRequest();
 					request.open('POST', 'server.php');
@@ -66,7 +68,7 @@ function form() {
 							reject();
 						}
 					};
-					request.send(data);
+					request.send(json);
 				});
 			}
 			function clearInput() {
