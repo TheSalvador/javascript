@@ -29,7 +29,9 @@ function form() {
 		contantForm = document.querySelector('form'),
 		input = form.querySelector('input'),
 		inputs = contantForm.getElementsByTagName('input')[1],
+		inputOne = contantForm.getElementsByTagName('input')[0],
 		statusMessage = document.createElement('div');
+		console.log(inputOne);
 
 		statusMessage.classList.add('status');
 		input.addEventListener('input', function(){
@@ -64,7 +66,7 @@ function form() {
 							reject();
 						}
 					};
-					request.send(json);
+					request.send(data);
 				});
 			}
 			function clearInput() {
@@ -83,6 +85,7 @@ function form() {
 		statusMessage.innerHTML = '';
 	}
 	input.oninput = clearInp;
+	inputOne.oninput = clearInp;
 	inputs.oninput = clearInp;
 	allForm(form);
 	allForm(contantForm);
