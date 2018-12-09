@@ -4,7 +4,6 @@ function form() {
 		btn = document.querySelector('.more'),
 		inputModal = document.querySelector('.popup-form__input'),
 		overlay = document.querySelector('.overlay');
-		console.log(inputModal);
 
 	infos.addEventListener('click', (event) => {
 		let target = event.target;
