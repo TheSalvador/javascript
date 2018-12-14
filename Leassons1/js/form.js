@@ -48,6 +48,11 @@ closeBtn = addEventListener("click", function (event) {
         document.body.style.overflow = 'hidden';
     }
 
+    setTimeout(modal, 60000);
+    function modal(){
+        overlay.style.display = 'block';
+    }
+
 //timer
     let deadLine = '2018.12.31';
     let getTimeRemaining = (endtime) => {
@@ -91,44 +96,6 @@ closeBtn = addEventListener("click", function (event) {
 		updateClock();
 	};
     setClock('timer', deadLine);
-    //tab
-let tab = document.querySelectorAll('.glazing_block'),
-    slider = document.querySelector('.glazing_slider'),
-    content = document.querySelector('.aluminum');
-
-    let hideTabContent = (a)=> {
-        for (let i = a; i < content.length; i++) {
-            content[i].classList.remove('show');
-            content[i].classList.add('hide');
-        }
-    };
-    
-    hideTabContent(2);
-    
-    let showTabContent = (b)=> {
-        if (content[b].classList.contains('hide')) {
-            content[b].classList.remove('hide');
-            content[b].classList.add('show');
-        }
-    };
-    
-    slider.addEventListener('click', (event) => {
-        let target = event.target;
-            if (target && target.classList.contains('glazing_block')) {
-                for(let i = 0; i < tab.length; i++) {
-                    if (target == tab[i]) {
-                        hideTabContent(0);
-                        showTabContent(i);
-                        break;
-                    }
-                }
-            }
-        });
-
-    setTimeout(modal, 60000);
-    function modal(){
-        overlay.style.display = 'block';
-    }
 
 
 
