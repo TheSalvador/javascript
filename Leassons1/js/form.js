@@ -1,5 +1,55 @@
 'use strict';
+//modal
+	let body = document.querySelector('body'),
+	overlay = document.querySelector('.popup_engineer'),
+	popupCalc = document.querySelector('.popup_calc'),
+	popupCalcProfile = document.querySelector('.popup_calc_profile'),
+	popupCalcEnd = document.querySelector('.popup_calc_end'),
+	closeBtn = document.querySelector('.popup_close'),
+	overlayTell = document.querySelector('.popup');
 
+	closeBtn = addEventListener("click", function (event) {
+		if (event.target && event.target.tagName == "STRONG") {
+			overlay.style.display = 'none';
+			overlayTell.style.display = 'none';
+			popupCalc.style.display = 'none';
+			popupCalcProfile.style.display = 'none';
+			popupCalcEnd.style.display = 'none';
+			document.body.style.overflow = '';
+		}
+		if (event.target == overlay||event.target == overlayTell) {
+			overlay.style.display = "none";
+			overlayTell.style.display = 'none';
+		}
+	});
+
+	body.addEventListener('click', (e)=>{
+		let target = e.target;
+			if (target && target.classList.contains('header_btn')){
+				overlay.style.display = 'block';
+				document.body.style.overflow = 'hidden';
+			}
+			if (target && target.classList.contains('popup_calc_button')){
+				popupCalcProfile.style.display = 'block';
+				document.body.style.overflow = 'hidden';
+			}
+			if(target && target.classList.contains('phone_link')){
+				overlayTell.style.display = 'block';
+				document.body.style.overflow = 'hidden';
+			}
+			if (target && target.classList.contains('glazing_price_btn')){
+				popupCalc.style.display = 'block';
+				document.body.style.overflow = 'hidden';
+			}
+			if(target && target.classList.contains('popup_calc_profile_button')){
+				popupCalcEnd.style.display = 'block';
+				document.body.style.overflow = 'hidden';
+			}
+	});
+setTimeout(modal, 60000);
+    function modal(){
+        overlay.style.display = 'block';
+    }
 //timer
     let deadLine = '2018.12.31';
     let getTimeRemaining = (endtime) => {
