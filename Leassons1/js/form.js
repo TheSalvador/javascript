@@ -51,6 +51,8 @@ closeBtn = addEventListener("click", function (event) {
     setTimeout(modal, 60000);
     function modal(){
         overlay.style.display = 'block';
+        document.body.style.overflow = '';
+
     }
 
 //timer
