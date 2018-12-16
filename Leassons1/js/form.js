@@ -54,20 +54,6 @@ closeBtn = addEventListener("click", function (event) {
         document.body.style.overflow = 'hidden';
 
     }
-    body.addEventListener('input', ()=>{
-        const repl = (e) => {
-			e.value = e.value.replace(/[^0-9]/ig, '');
-			
-        };
-        repl(inputForm);
-        repl(inputForm2);
-        repl(inputPopupFormModal);
-        repl(inputPopupFormModalTell);
-        repl(inputPopupFormModalCalcWidth);
-        repl(inputPopupFormModalCalcHight);
-        repl(inputPopupFormModalCalcEnd);
-        repl(inputForm3);
-    });
 
 //timer
     let deadLine = '2018.12.31';
@@ -113,80 +99,146 @@ closeBtn = addEventListener("click", function (event) {
 	};
     setClock('timer', deadLine);
 //form
-    let message = {
-        loading: 'Загрузка...',
-        success: 'Спасибо! Cкоро мы с вами свяжемся',
-        failure: 'Что-то пошло не так'
-    };
-    let form = document.querySelector('form'),
-        popupForm2 = document.querySelectorAll('.form')[1],
-        popupFormModal = document.querySelectorAll('.form')[7],
-        popupForm5 = document.querySelectorAll('.form')[5],
-        popupFormModalTell = document.querySelectorAll('.form')[6],
-        popupFormModalCalcEnd = document.querySelectorAll('.form')[8],
-        inputForm = form.querySelectorAll('input')[1],
-        inputForm2 = document.querySelectorAll('input')[3],
-        inputForm3 = document.querySelectorAll('input')[11],
-        inputPopupFormModal = document.querySelectorAll('input')[15],
-        inputPopupFormModalTell = document.querySelectorAll('input')[13],
-        inputPopupFormModalCalcWidth = document.querySelectorAll('input')[16],
-        inputPopupFormModalCalcHight = document.querySelectorAll('input')[17],
-        inputPopupFormModalCalcEnd = document.querySelectorAll('input')[21],
-        input = document.querySelectorAll('input'),
-        statusMessage = document.createElement('div');
+let message = {
+    loading: 'Загрузка...',
+    success: 'Спасибо! Cкоро мы с вами свяжемся',
+    failure: 'Что-то пошло не так'
+};
+let form = document.querySelector('form'),
+    popupForm2 = document.querySelectorAll('.form')[1],
+    popupFormModal = document.querySelectorAll('.form')[7],
+    popupForm5 = document.querySelectorAll('.form')[5],
+    popupFormModalTell = document.querySelectorAll('.form')[6],
+    popupFormModalCalcEnd = document.querySelectorAll('.form')[8],
+    inputTell = document.querySelectorAll('input[name="user_phone"]'),
+    statusMessage = document.createElement('div');
 
-        statusMessage.classList.add('status');
-        
-        function allForm(form) {
-            form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            form.appendChild(statusMessage);
+    statusMessage.classList.add('status');
+    
+    function allForm(form) {
+        form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        form.appendChild(statusMessage);
 
-            let formData = new FormData(form);
-            let obj ={};
-            formData.forEach(function(value, key) {
-                obj[key] = value;
-            });
-            let json = JSON.stringify(obj);
-
-            function postData() {
-                return new Promise(function(resolve, reject) {
-                    let request = new XMLHttpRequest();
-                    request.open('POST', 'server.php');
-                    request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-                    request.onreadystatechange = function() {
-                        if (request.readyState < 4) {
-                            resolve();
-                        } else if (request.readyState === 4 && request.status == 200){
-                            resolve();
-                        } else {
-                            reject();
-                        }
-                    };
-                    request.send(json);
-                });
-            }
-            function clearInput() {
-                for (let i = 0; i<input.length; i++) {
-                    input[i].value = '';
-                }
-            }
-        postData(formData)
-            .then(()=>statusMessage.innerHTML = message.loading)
-            .then(()=>statusMessage.innerHTML = message.success)
-            .catch(() => statusMessage.innerHTML = message.failure)
-            .then(clearInput);
+        let formData = new FormData(form);
+        let obj ={};
+        formData.forEach(function(value, key) {
+            obj[key] = value;
         });
+        let json = JSON.stringify(obj);
+
+        function postData() {
+            return new Promise(function(resolve, reject) {
+                let request = new XMLHttpRequest();
+                request.open('POST', 'server.php');
+                request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+                request.onreadystatechange = function() {
+                    if (request.readyState < 4) {
+                        resolve();
+                    } else if (request.readyState === 4 && request.status == 200){
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                };
+                request.send(json);
+            });
+        }
+    postData(formData)
+        .then(()=>statusMessage.innerHTML = message.loading)
+        .then(()=>statusMessage.innerHTML = message.success)
+        .catch(() => statusMessage.innerHTML = message.failure);
+    });
+}
+function clearInp() {
+    statusMessage.innerHTML = '';
+}
+allForm(form);
+allForm(popupForm2);
+allForm(popupFormModal);
+allForm(popupForm5);
+allForm(popupFormModalTell);
+allForm(popupFormModalCalcEnd);
+
+let tab = document.querySelectorAll('.glazing_block'),
+    slider = document.querySelector('body'),
+    tabActive = document.querySelectorAll('.tab_active'),
+    content = document.querySelectorAll('.tab_content');
+
+    let hideTabContent = (a)=> {
+        for (let i = a; i < content.length; i++) {
+            content[i].classList.remove('show');
+            content[i].classList.add('hide');
+            tabActive[i].classList.remove('active');
+        }
+    };
+    
+    hideTabContent(1);
+    
+    let showTabContent = (b)=> {
+        if (content[b].classList.contains('hide')) {
+            tabActive[b].classList.add('active');
+            content[b].classList.remove('hide');
+            content[b].classList.add('show');
+        }
+    };
+    slider.addEventListener('click', (event) => {
+        let target = event.target;
+
+        if (target && target.classList.contains("glazing_block") || target.parentNode.classList.contains("glazing_block")) {
+            [...tab].forEach(function (event, i) {
+                if (target == event || target.parentNode == event) {
+                    hideTabContent(0);
+                    showTabContent(i);
+                }
+            });
+        }
+        });
+//2
+
+
+        let tabs = document.querySelectorAll('.decoration_item'),
+            sliders = document.querySelector('body'),
+            clickS = document.querySelectorAll('.afterclick'),
+            contents = document.querySelectorAll('.tab_contents');
+        
+            let hideTabContents = (a)=> {
+                for (let i = a; i < contents.length; i++) {
+                    contents[i].classList.remove('show');
+                    contents[i].classList.add('hide');
+                    clickS[i].classList.remove('after_click');
+                }
+            };
+            
+            hideTabContents(1);
+            
+            let showTabContents = (b)=> {
+                if (contents[b].classList.contains('hide')) {
+                    contents[b].classList.remove('hide');
+                    contents[b].classList.add('show');
+                    clickS[b].classList.add('after_click');
+                }
+            };
+            
+            sliders.addEventListener('click', (event) => {
+                let target = event.target;
+        
+                if (target && target.classList.contains("decoration_item") || target.parentNode.classList.contains("decoration_item")) {
+                    [...tabs].forEach(function (event, i) {
+                        if (target == event || target.parentNode == event) {
+                            hideTabContents(0);
+                            showTabContents(i);
+                        }
+                    });
+                }
+                });
+
+    function block(input) {
+        input.oninput = function(){
+            return (this.value = this.value.replace(/[^0-9]/g, ""));
+        };
     }
-    function clearInp() {
-        statusMessage.innerHTML = '';
-    }
-    allForm(form);
-    allForm(popupForm2);
-    allForm(popupFormModal);
-    allForm(popupForm5);
-    allForm(popupFormModalTell);
-    allForm(popupFormModalCalcEnd);
+    [...inputTell].forEach(elem=> block(elem));
 
 
 
