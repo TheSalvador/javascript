@@ -3,6 +3,7 @@ function form(){
         overlay = document.querySelector('.popup_engineer'),
         popupCalc = document.querySelector('.popup_calc'),
         popupCalcProfile = document.querySelector('.popup_calc_profile'),
+        closeBtn = document.querySelector('.popup_close'),
         popupCalcEnd = document.querySelector('.popup_calc_end'),
         overlayTell = document.querySelector('.popup');
 
@@ -112,6 +113,13 @@ function form(){
     allForm(popupForm5);
     allForm(popupFormModalTell);
     allForm(popupFormModalCalcEnd);
+
+    function block(input) {
+        input.oninput = function(){
+            return (this.value = this.value.replace(/[^0-9]/g, ""));
+        };
+    }
+    [...inputTell].forEach(elem=> block(elem));
 }
 
 module.exports = form;

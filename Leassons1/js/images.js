@@ -4,11 +4,11 @@ function img(){
         img = document.createElement('img'),
         workWrapper = document.querySelector('.works');
 
-        wrapper.classList.add('popup');
-        workWrapper.appendChild(wrapper);
-        wrapper.style.justifyContent = 'center';
-        wrapper.style.alignItems = 'center';
-        wrapper.appendChild(img);
+    wrapper.classList.add('popup');
+    workWrapper.appendChild(wrapper);
+    wrapper.style.justifyContent = 'center';
+    wrapper.style.alignItems = 'center';
+    wrapper.appendChild(img);
 
     let imgMain = document.querySelectorAll('.worksImg');
     for (let i = 0; i < imgMain.length; i++) {
@@ -35,5 +35,6 @@ function img(){
             document.body.style.overflow = '';
         }
     });
+
 }
 module.exports = img;

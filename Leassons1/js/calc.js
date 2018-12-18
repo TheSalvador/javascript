@@ -20,7 +20,6 @@ function calc() {
       }
     };
   
-  
     let selectValue = () => {
       for (let i = 0; i < inputSelect.options.length; i++) {
         if (inputSelect.options[i].selected) {
@@ -28,7 +27,6 @@ function calc() {
         }
       }
     };
-  
   
     let checkBoxSelect = () => {
       checkbox[1].addEventListener('change', function () {
@@ -110,7 +108,6 @@ function calc() {
           });
         });
       }
-  
   
       function showModalCalc(event) {
         let target = event.target;
@@ -211,9 +208,7 @@ function calc() {
             deleteOptions();
           }
         });
-  
       });
-  
     }
   
     for (let i = 0; i < input.length; i++) {
@@ -229,10 +224,9 @@ function calc() {
         }
       });
     }
-  
     showPopupCalc();
     previewImage();
     checkBoxSelect();
-  
+
   }
   module.exports = calc;

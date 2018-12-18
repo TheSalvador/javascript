@@ -71,12 +71,5 @@ let tab = document.querySelectorAll('.glazing_block'),
                     });
                 }
                 });
-
-    function block(input) {
-        input.oninput = function(){
-            return (this.value = this.value.replace(/[^0-9]/g, ""));
-        };
-    }
-    [...inputTell].forEach(elem=> block(elem));
-}
+            }
 module.exports = tabs;

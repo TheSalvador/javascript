@@ -1,5 +1,5 @@
-function timer(){
-let deadLine = '2018.12.31';
+function timers(){
+	let deadLine = '2018.12.31';
     let getTimeRemaining = (endtime) => {
 		let t = Date.parse(endtime) - Date.parse(new Date()),
             seconds = Math.floor((t/1000) % 60),
@@ -42,4 +42,4 @@ let deadLine = '2018.12.31';
 	};
 	setClock('timer', deadLine);
 }
-module.exports = timer;
+module.exports = timers;
