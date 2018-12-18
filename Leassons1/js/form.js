@@ -99,6 +99,7 @@ closeBtn = addEventListener("click", function (event) {
 	};
     setClock('timer', deadLine);
 //form
+//form
 let message = {
     loading: 'Загрузка...',
     success: 'Спасибо! Cкоро мы с вами свяжемся',
@@ -111,6 +112,7 @@ let form = document.querySelector('form'),
     popupFormModalTell = document.querySelectorAll('.form')[6],
     popupFormModalCalcEnd = document.querySelectorAll('.form')[8],
     inputTell = document.querySelectorAll('input[name="user_phone"]'),
+    // inputSize = document.querySelectorAll('input[name="size"]'),
     statusMessage = document.createElement('div');
 
     statusMessage.classList.add('status');
@@ -144,10 +146,16 @@ let form = document.querySelector('form'),
                 request.send(json);
             });
         }
+        // function clearInput() {
+        // 	for (let i = 0; i<input.length; i++) {
+        // 		input[i].value = '';
+        // 	}
+        // }
     postData(formData)
         .then(()=>statusMessage.innerHTML = message.loading)
         .then(()=>statusMessage.innerHTML = message.success)
         .catch(() => statusMessage.innerHTML = message.failure);
+        // .then(clearInput);
     });
 }
 function clearInp() {
@@ -159,6 +167,7 @@ allForm(popupFormModal);
 allForm(popupForm5);
 allForm(popupFormModalTell);
 allForm(popupFormModalCalcEnd);
+
 
 let tab = document.querySelectorAll('.glazing_block'),
     slider = document.querySelector('body'),
@@ -197,9 +206,9 @@ let tab = document.querySelectorAll('.glazing_block'),
 //2
 
 
-        let tabs = document.querySelectorAll('.decoration_item'),
-            sliders = document.querySelector('body'),
-            clickS = document.querySelectorAll('.afterclick'),
+        let tabs = document.querySelectorAll('.afterclick'),
+            sliders = document.querySelector('.decoration_slider'),
+            clickS = document.querySelectorAll('.no_click'),
             contents = document.querySelectorAll('.tab_contents');
         
             let hideTabContents = (a)=> {
@@ -223,7 +232,7 @@ let tab = document.querySelectorAll('.glazing_block'),
             sliders.addEventListener('click', (event) => {
                 let target = event.target;
         
-                if (target && target.classList.contains("decoration_item") || target.parentNode.classList.contains("decoration_item")) {
+                if (target && target.classList.contains("afterclick") || target.parentNode.classList.contains("afterclick")) {
                     [...tabs].forEach(function (event, i) {
                         if (target == event || target.parentNode == event) {
                             hideTabContents(0);
